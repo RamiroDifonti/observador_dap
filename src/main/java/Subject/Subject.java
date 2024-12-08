@@ -1,6 +1,7 @@
 package Subject;
 
 import Observer.Client;
+import utils.Product;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,6 @@ public abstract class Subject {
             client.update(this);
         }
     }
-    public abstract void addProduct(String product);
-    public abstract String getProducts();
+    public abstract void addProduct(Product product);
+    public abstract Product getProducts();
 }
