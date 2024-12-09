@@ -1,6 +1,6 @@
-package Observer;
+package observer;
 
-import Subject.Subject;
+import subject.Subject;
 import utils.Product;
 
 public class ConcretClient implements Client {
