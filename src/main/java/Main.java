@@ -1,7 +1,8 @@
-import Observer.Client;
-import Observer.ConcretClient;
-import Subject.MobilesSubject;
-import Subject.Subject;
+import gui.LoginFrame;
+import observer.Client;
+import observer.ConcretClient;
+import subject.MobilesSubject;
+import subject.Subject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Product;
@@ -12,7 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
+
     public static void main(String[] args) {
+        new LoginFrame();
+    }
+    public void addUser(String[] args) {
         ObjectMapper objectMapper = new ObjectMapper();
         Client test = new ConcretClient("testMobile");
         Subject mobiles = new MobilesSubject();
