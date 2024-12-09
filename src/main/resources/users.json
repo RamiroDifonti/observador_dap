@@ -1,0 +1,27 @@
+{
+  "Ramiro" : [ {
+    "laptops" : true,
+    "mobiles" : false,
+    "cpus" : false
+  } ],
+  "Marcos" : [ {
+    "laptops" : false,
+    "mobiles" : true,
+    "cpus" : false
+  } ],
+  "Pedro" : [ {
+    "laptops" : false,
+    "mobiles" : false,
+    "cpus" : true
+  } ],
+  "Paco" : [ {
+    "laptops" : true,
+    "mobiles" : true,
+    "cpus" : false
+  } ],
+  "Agustín" : [ {
+    "laptops" : true,
+    "mobiles" : false,
+    "cpus" : true
+  } ]
+}
