@@ -6,8 +6,8 @@
   }, {
     "name" : "ASUS ROG Strix G16 G614JIR-N4003 Intel Core i9-14900HX/32GB/1TB SSD/RTX 4070",
     "price" : 599.0,
-    "image" : "src/main/resources/images/alurin.jpg"
-  }],
+    "image" : "src/main/resources/images/asus.jpg"
+  } ],
   "mobiles" : [ {
     "name" : "Móvil Xiaomi Redmi Note 13",
     "price" : 199.0,
@@ -25,5 +25,5 @@
     "name" : "Intel Core i5-12400F 2.5 GHz",
     "price" : 124.85,
     "image" : "src/main/resources/images/inteli5.jpg"
-  }]
+  } ]
 }
