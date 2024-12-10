@@ -30,26 +30,7 @@ public class LoginFrame extends JFrame {
     private Subject _cpus = new CPUsSubject();*/
     public LoginFrame() {
         loadSuscriptors();
-        Thread periodicLoader = new Thread(() -> {
-            while (true) {
-                try {
-                    // Llamar a la función load
-                    fetchData();
-
-                    // Pausar el hilo durante 15 segundos
-                    Thread.sleep(15000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break; // Salir del bucle si el hilo es interrumpido
-                }
-            }
-        });
-
-        // Establecer el hilo como demonio para que no bloquee la finalización del programa
-        periodicLoader.setDaemon(true);
-
-        // Iniciar el hilo
-        periodicLoader.start();
+        fetchData();
         Start();
     }
     public void Start() {
@@ -151,12 +132,28 @@ public class LoginFrame extends JFrame {
         JTextField imageField = new JTextField();
         JButton addButon = new JButton("Añadir producto");
 
+        // Crear botones de tipos de producto
+        JRadioButton laptopButton = new JRadioButton("Laptop");
+        JRadioButton mobileButton = new JRadioButton("Mobile");
+        JRadioButton cpuButton = new JRadioButton("CPU");
+        ButtonGroup group = new ButtonGroup();
+        group.add(laptopButton);
+        group.add(mobileButton);
+        group.add(cpuButton);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 3));
+        buttonPanel.add(laptopButton);
+        buttonPanel.add(mobileButton);
+        buttonPanel.add(cpuButton);
+
         _panel.add(nameText);
         _panel.add(nameField);
         _panel.add(priceText);
         _panel.add(priceField);
         _panel.add(imageText);
         _panel.add(imageField);
+        _panel.add(buttonPanel);
         _panel.add(addButon);
 
         addButon.addActionListener(new ActionListener() {
@@ -170,7 +167,44 @@ public class LoginFrame extends JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduzca un precio al producto.");
                     return;
                 }
+                String productType = "";
+                if (laptopButton.isSelected()) {
+                    productType = "laptops";
+                } else if (mobileButton.isSelected()) {
+                    productType = "mobiles";
+                } else if (cpuButton.isSelected()) {
+                    productType = "cpus";
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de producto.");
+                    return;
+                }
                 // añadir producto
+                File jsonFile = new File("src/main/resources/data.json");
+                // Añadir usuario con suscripciones
+                try {
+                    ObjectNode root = (ObjectNode) _objectMapper.readTree(jsonFile);
+                    // Asegurarse de que la clave "laptops" existe
+                    ArrayNode node = (ArrayNode) root.get(productType);
+
+                    // Crear un nuevo objeto para añadir a "laptops"
+                    ObjectNode newProduct = _objectMapper.createObjectNode();
+                    newProduct.put("name", nameField.getText());
+                    newProduct.put("price", priceField.getText());
+                    newProduct.put("image", imageField.getText());
+
+                    // Añadir el nuevo objeto a la lista "laptops"
+                    node.add(newProduct);
+
+                    // Guardar los cambios en el archivo JSON
+                    _objectMapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, root);
+
+                    JOptionPane.showMessageDialog(null, "Producto añadido correctamente");
+                    remove(_panel);
+                    fetchData();
+                    Start();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         add(_panel);
@@ -262,19 +296,26 @@ public class LoginFrame extends JFrame {
         try {
             // Leer el archivo JSON
             File file = new File("src/main/resources/data.json");
-            Map<String, List<Product>> catalog = _objectMapper.readValue(
+            Map<String, List<Product>> products = _objectMapper.readValue(
                     file,
                     new TypeReference<Map<String, List<Product>>>() {}
             );
+/*            products.get("laptops").forEach(laptop -> {
+                if (!_laptops.exists(laptop.getName())) {
+                    _laptops.addProduct(laptop);
+                }
+            });*/
 
-/*            catalog.get("laptops").forEach(laptop ->
-                    _laptops.addProduct(laptop));*/
-
-            catalog.get("mobiles").forEach(mobile ->
-                    _mobiles.addProduct(mobile));
-
-/*            catalog.get("cpus").forEach(cpu ->
-                    _cpus.addProduct(cpu));*/
+            products.get("mobiles").forEach(mobile -> {
+                if (!_mobiles.exists(mobile.getName())) {
+                    _mobiles.addProduct(mobile);
+                }
+            });
+/*            products.get("cpus").forEach(cpu -> {
+                if (!_cpus.exists(cpu.getName())) {
+                    _cpus.addProduct(cpu);
+                }
+            });*/
 
         } catch (IOException e) {
             e.printStackTrace();
