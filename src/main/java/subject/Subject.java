@@ -30,4 +30,5 @@ public abstract class Subject {
     }
     public abstract void addProduct(Product product);
     public abstract Product getProducts();
+    public abstract boolean exists(String name);
 }
