@@ -1,4 +1,4 @@
-package Subject;
+package subject;
 
 import utils.Product;
 import java.util.ArrayList;

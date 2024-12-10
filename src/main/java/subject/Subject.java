@@ -1,6 +1,6 @@
-package Subject;
+package subject;
 
-import Observer.Client;
+import observer.Client;
 import utils.Product;
 
 import java.util.ArrayList;
@@ -30,4 +30,5 @@ public abstract class Subject {
     }
     public abstract void addProduct(Product product);
     public abstract Product getProducts();
+    public abstract boolean exists(String name);
 }

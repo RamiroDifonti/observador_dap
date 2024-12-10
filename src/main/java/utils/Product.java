@@ -1,31 +1,27 @@
 package utils;
 
 public class Product {
-    private String name;
-    private double price;
-    private String image;
-
-    // Constructor por defecto
-    public Product() {
-    }
+    private String _name;
+    private double _price;
+    private String _image;
 
     // Getters y setters
     public String getName() {
-        return name;
+        return _name;
     }
     public void setName(String name) {
-        this.name = name;
+        this._name = name;
     }
     public double getPrice() {
-        return price;
+        return _price;
     }
     public void setPrice(double price) {
-        this.price = price;
+        this._price = price;
     }
     public String getImage() {
-        return image;
+        return _image;
     }
     public void setImage(String image) {
-        this.image = image;
+        this._image = image;
     }
 }

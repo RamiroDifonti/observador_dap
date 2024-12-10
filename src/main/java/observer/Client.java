@@ -1,6 +1,6 @@
-package Observer;
+package observer;
 
-import Subject.Subject;
+import subject.Subject;
 
 public interface Client {
     public void update(Subject store);
