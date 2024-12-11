@@ -23,5 +23,15 @@
     "laptops" : true,
     "mobiles" : false,
     "cpus" : true
+  } ],
+  "Prueba usuario" : [ {
+    "laptops" : false,
+    "mobiles" : false,
+    "cpus" : true
+  } ],
+  "Lolete me gustan las cpus" : [ {
+    "laptops" : false,
+    "mobiles" : false,
+    "cpus" : true
   } ]
 }
