@@ -15,6 +15,12 @@ public class ConcretClient implements Client {
         _subjectState = store.getProducts();
         System.out.println("Notified " + _name + " of new product: " + _subjectState.getName() + " with price: " + _subjectState.getPrice());
     }
+
+    @Override
+    public String getName() {
+        return _name;
+    }
+
     public void getSubjectState() {
         System.out.println(_name + " has state: " + _subjectState);
     }
