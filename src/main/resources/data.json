@@ -2,28 +2,28 @@
   "laptops" : [ {
     "name" : "Alurin Go Start Intel Celeron N4020/8GB/256GB SSD",
     "price" : 399.0,
-    "image" : "src/main/resources/images/alurin.jpg"
+    "image" : "src/main/resources/images/alurin.png"
   }, {
     "name" : "ASUS ROG Strix G16 G614JIR-N4003 Intel Core i9-14900HX/32GB/1TB SSD/RTX 4070",
     "price" : 599.0,
-    "image" : "src/main/resources/images/asus.jpg"
+    "image" : "src/main/resources/images/asus.png"
   } ],
   "mobiles" : [ {
     "name" : "Móvil Xiaomi Redmi Note 13",
     "price" : 199.0,
-    "image" : "src/main/resources/images/xiaomi13.jpg"
+    "image" : "src/main/resources/images/xiaomi13.png"
   }, {
     "name" : "Móvil Samsung Galaxy S24 Ultra",
     "price" : 1349.0,
-    "image" : "src/main/resources/images/samsungS24.jpg"
-  }],
+    "image" : "src/main/resources/images/samsungS24.png"
+  } ],
   "cpus" : [ {
     "name" : "AMD Ryzen 5 7600X 4.7 GHz",
     "price" : 214.99,
-    "image" : "src/main/resources/images/ryzen5.jpg"
+    "image" : "src/main/resources/images/ryzen5.png"
   }, {
     "name" : "Intel Core i5-12400F 2.5 GHz",
     "price" : 124.85,
-    "image" : "src/main/resources/images/inteli5.jpg"
+    "image" : "src/main/resources/images/inteli5.png"
   } ]
 }
