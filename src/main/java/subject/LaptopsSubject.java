@@ -19,4 +19,14 @@ public class LaptopsSubject extends Subject {
     public Product getProducts() {
         return _lastProduct;
     }
+
+    @Override
+    public boolean exists(String name) {
+        for (Product product : _products) {
+            if (product.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
