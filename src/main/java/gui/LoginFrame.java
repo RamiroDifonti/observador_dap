@@ -73,8 +73,7 @@ public class LoginFrame extends JFrame {
                     return;
                 }
                 if (exists(loginField.getText())) {
-                    loadUser(loginField.getText());
-                    // new UserFrame(loginField.getText());
+                    // Buscar el cliente y cargar su frame
                     for (Client client : _clients) {
                         if (client.getName().equals(loginField.getText())) {
                             client.loadFrame();
