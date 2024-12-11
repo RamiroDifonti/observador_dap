@@ -28,6 +28,14 @@ public abstract class Subject {
             client.update(this);
         }
     }
+    public boolean clientExists(Client client) {
+        for (Client c : _clients) {
+            if (c.getName().equals(client.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
     public abstract void addProduct(Product product);
     public abstract Product getProducts();
     public abstract boolean exists(String name);
