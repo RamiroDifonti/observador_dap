@@ -15,4 +15,8 @@ public class LaptopsSubject extends Subject {
         notifyUsers();
     }
 
+    @Override
+    public Product getProducts() {
+        return _lastProduct;
+    }
 }
