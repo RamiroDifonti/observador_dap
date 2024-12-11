@@ -7,6 +7,34 @@
     "name" : "ASUS ROG Strix G16 G614JIR-N4003 Intel Core i9-14900HX/32GB/1TB SSD/RTX 4070",
     "price" : 599.0,
     "image" : "src/main/resources/images/asus.jpg"
+  }, {
+    "name" : "joder",
+    "price" : "858",
+    "image" : ""
+  }, {
+    "name" : "asd",
+    "price" : "45",
+    "image" : ""
+  }, {
+    "name" : "ghj",
+    "price" : "85",
+    "image" : ""
+  }, {
+    "name" : "aaaaa portatil",
+    "price" : "95784",
+    "image" : ""
+  }, {
+    "name" : "vamos portatil",
+    "price" : "65",
+    "image" : ""
+  }, {
+    "name" : "porta",
+    "price" : "32",
+    "image" : ""
+  }, {
+    "name" : "Laptop andy",
+    "price" : "475",
+    "image" : ""
   } ],
   "mobiles" : [ {
     "name" : "Móvil Xiaomi Redmi Note 13",
@@ -16,7 +44,19 @@
     "name" : "Móvil Samsung Galaxy S24 Ultra",
     "price" : 1349.0,
     "image" : "src/main/resources/images/samsungS24.jpg"
-  }],
+  }, {
+    "name" : "PepePhone",
+    "price" : "500",
+    "image" : ""
+  }, {
+    "name" : "pruebita",
+    "price" : "5",
+    "image" : ""
+  }, {
+    "name" : "piña colada",
+    "price" : "847885",
+    "image" : ""
+  } ],
   "cpus" : [ {
     "name" : "AMD Ryzen 5 7600X 4.7 GHz",
     "price" : 214.99,
@@ -25,5 +65,25 @@
     "name" : "Intel Core i5-12400F 2.5 GHz",
     "price" : 124.85,
     "image" : "src/main/resources/images/inteli5.jpg"
+  }, {
+    "name" : "Lol pepino",
+    "price" : "99999",
+    "image" : ""
+  }, {
+    "name" : "lol pepino",
+    "price" : "564",
+    "image" : ""
+  }, {
+    "name" : "Intel 52",
+    "price" : "85",
+    "image" : ""
+  }, {
+    "name" : "cpu boy",
+    "price" : "795",
+    "image" : ""
+  }, {
+    "name" : "pipo",
+    "price" : "45",
+    "image" : ""
   } ]
 }

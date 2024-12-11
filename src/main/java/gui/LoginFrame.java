@@ -9,6 +9,7 @@ import observer.Client;
 import observer.ConcretClient;
 import subject.LaptopsSubject;
 import subject.MobilesSubject;
+import subject.CpusSubject;
 import subject.Subject;
 import utils.Product;
 
@@ -27,7 +28,7 @@ public class LoginFrame extends JFrame {
     private ObjectMapper _objectMapper = new ObjectMapper();
     private Subject _mobiles = new MobilesSubject();
     private Subject _laptops = new LaptopsSubject();
-   /* private Subject _cpus = new CPUsSubject();*/
+    private Subject _cpus = new CpusSubject();
     public LoginFrame() {
         loadSuscriptors();
         fetchData();
@@ -278,9 +279,9 @@ public class LoginFrame extends JFrame {
                 // Verificar las suscripciones
                 Client client = new ConcretClient(userName);
                 if (subscriptions.get("cpus").asBoolean()) {
-/*                    if (!_cpus.clientExists(client)) {
+                    if (!_cpus.clientExists(client)) {
                         _cpus.addObserver(client);
-                    }*/
+                    }
                 }
                 if (subscriptions.get("laptops").asBoolean()) {
                     if (!_laptops.clientExists(client)) {
@@ -306,22 +307,22 @@ public class LoginFrame extends JFrame {
                     file,
                     new TypeReference<Map<String, List<Product>>>() {}
             );
-/*            products.get("laptops").forEach(laptop -> {
+            products.get("laptops").forEach(laptop -> {
                 if (!_laptops.exists(laptop.getName())) {
                     _laptops.addProduct(laptop);
                 }
-            });*/
+            });
 
             products.get("mobiles").forEach(mobile -> {
                 if (!_mobiles.exists(mobile.getName())) {
                     _mobiles.addProduct(mobile);
                 }
             });
-/*            products.get("cpus").forEach(cpu -> {
+            products.get("cpus").forEach(cpu -> {
                 if (!_cpus.exists(cpu.getName())) {
                     _cpus.addProduct(cpu);
                 }
-            });*/
+            });
 
         } catch (IOException e) {
             e.printStackTrace();
