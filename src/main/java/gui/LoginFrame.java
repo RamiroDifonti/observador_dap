@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import observer.Client;
 import observer.ConcretClient;
+import subject.LaptopsSubject;
 import subject.MobilesSubject;
 import subject.Subject;
 import utils.Product;
@@ -25,9 +26,8 @@ public class LoginFrame extends JFrame {
     private JPanel _panel;
     private ObjectMapper _objectMapper = new ObjectMapper();
     private Subject _mobiles = new MobilesSubject();
-
-/*    private Subject _laptops = new LaptopsSubject();
-    private Subject _cpus = new CPUsSubject();*/
+    private Subject _laptops = new LaptopsSubject();
+   /* private Subject _cpus = new CPUsSubject();*/
     public LoginFrame() {
         loadSuscriptors();
         fetchData();
@@ -278,13 +278,19 @@ public class LoginFrame extends JFrame {
                 // Verificar las suscripciones
                 Client client = new ConcretClient(userName);
                 if (subscriptions.get("cpus").asBoolean()) {
-                 /*   _cpus.addObserver(client);*/
+/*                    if (!_cpus.clientExists(client)) {
+                        _cpus.addObserver(client);
+                    }*/
                 }
                 if (subscriptions.get("laptops").asBoolean()) {
-            /*        _laptops.addObserver(client);*/
+                    if (!_laptops.clientExists(client)) {
+                        _laptops.addObserver(client);
+                    }
                 }
                 if (subscriptions.get("mobiles").asBoolean()) {
-                    _mobiles.addObserver(client);
+                    if (!_mobiles.clientExists(client)) {
+                        _mobiles.addObserver(client);
+                    }
                 }
             }
             System.out.println("Usuarios cargados correctamente");
