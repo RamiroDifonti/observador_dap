@@ -28,6 +28,7 @@ public class LoginFrame extends JFrame {
     private Subject _mobiles = new MobilesSubject();
     private Subject _laptops = new LaptopsSubject();
    /* private Subject _cpus = new CPUsSubject();*/
+    private List<Client> _clients = new ArrayList<>();
     public LoginFrame() {
         loadSuscriptors();
         fetchData();
@@ -73,6 +74,13 @@ public class LoginFrame extends JFrame {
                 }
                 if (exists(loginField.getText())) {
                     loadUser(loginField.getText());
+                    // new UserFrame(loginField.getText());
+                    for (Client client : _clients) {
+                        if (client.getName().equals(loginField.getText())) {
+                            client.loadFrame();
+                            break;
+                        }
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "El nombre de usuario no existe.");
                 }
@@ -280,16 +288,21 @@ public class LoginFrame extends JFrame {
                 if (subscriptions.get("cpus").asBoolean()) {
 /*                    if (!_cpus.clientExists(client)) {
                         _cpus.addObserver(client);
+                        _clients.add(client);
                     }*/
                 }
                 if (subscriptions.get("laptops").asBoolean()) {
                     if (!_laptops.clientExists(client)) {
                         _laptops.addObserver(client);
+                        _clients.add(client);
                     }
+
+
                 }
                 if (subscriptions.get("mobiles").asBoolean()) {
                     if (!_mobiles.clientExists(client)) {
                         _mobiles.addObserver(client);
+                        _clients.add(client);
                     }
                 }
             }
@@ -306,11 +319,11 @@ public class LoginFrame extends JFrame {
                     file,
                     new TypeReference<Map<String, List<Product>>>() {}
             );
-/*            products.get("laptops").forEach(laptop -> {
+            products.get("laptops").forEach(laptop -> {
                 if (!_laptops.exists(laptop.getName())) {
                     _laptops.addProduct(laptop);
                 }
-            });*/
+            });
 
             products.get("mobiles").forEach(mobile -> {
                 if (!_mobiles.exists(mobile.getName())) {
@@ -327,10 +340,7 @@ public class LoginFrame extends JFrame {
             e.printStackTrace();
         }
     }
-    // TODO
-    public void loadUser(String username) {
 
-    }
     private boolean exists(String username) {
         try {
             File file = new File("src/main/resources/users.json");
