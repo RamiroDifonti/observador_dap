@@ -16,8 +16,8 @@ public class ConcretClient extends JFrame implements Client {
         _name = name;
         setVisible(false);
         productsPanel = new JPanel();
-        productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.X_AXIS));
-        _scrollPane = new JScrollPane(productsPanel, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        productsPanel.setLayout(new BoxLayout(productsPanel, BoxLayout.Y_AXIS)); // Use vertical BoxLayout
+        _scrollPane = new JScrollPane(productsPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     @Override
@@ -27,30 +27,41 @@ public class ConcretClient extends JFrame implements Client {
         // Create a new product panel for each product
         JPanel productPanel = new JPanel();
         productPanel.setLayout(new BorderLayout());
+        productPanel.setPreferredSize(new Dimension(800, 150)); // Reduce the height to make panels closer
 
-        // Construct the image path based on the product name
+        // Retrieve the image path from the Product object
         String imagePath = _subjectState.getImage();
+        System.out.println("Image path: " + imagePath); // Debug statement
         File imageFile = new File(imagePath);
         ImageIcon imageIcon;
-        if (imageFile.exists()) {
+        if (!imagePath.isEmpty()) {
             imageIcon = new ImageIcon(imagePath);
+            System.out.println("Image loaded successfully: " + imagePath); // Debug statement
         } else {
             // Use a default image if the specified image is not found
-            imageIcon = new ImageIcon("src/main/resources/images/default.jpg");
+            System.out.println("Image not found, using default image."); // Debug statement
+            imageIcon = new ImageIcon("src/main/resources/images/default.png");
         }
 
         // Scale the image
         Image image = imageIcon.getImage();
-        Image newImage = image.getScaledInstance(1000, 1000, Image.SCALE_SMOOTH);
+        Image newImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newImage);
 
         JLabel imageLabel = new JLabel(imageIcon);
-        JLabel nameLabel = new JLabel("Name: " + _subjectState.getName(), JLabel.CENTER);
-        JLabel priceLabel = new JLabel("Price: $" + _subjectState.getPrice(), JLabel.CENTER);
+        JLabel nameLabel = new JLabel(_subjectState.getName());
+        JLabel priceLabel = new JLabel("$" + _subjectState.getPrice());
+
+        // Create a panel to hold the name and price labels
+        JPanel namePricePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        namePricePanel.add(nameLabel);
+        namePricePanel.add(priceLabel);
 
         productPanel.add(imageLabel, BorderLayout.NORTH);
-        productPanel.add(nameLabel, BorderLayout.CENTER);
-        productPanel.add(priceLabel, BorderLayout.SOUTH);
+        productPanel.add(namePricePanel, BorderLayout.CENTER);
+
+        // Remove the margin between product panels
+        productPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         productsPanel.add(productPanel);
 
