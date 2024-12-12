@@ -314,7 +314,7 @@ public class LoginFrame extends JFrame {
                 }
             }
         });
-        // _panel.add(suscriptionOptions);
+        _panel.add(suscriptionOptions);
         _panel.add(suscriptionPanel);
         _panel.add(backButtonPanel);
         add(_panel);
