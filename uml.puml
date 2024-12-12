@@ -1,0 +1,103 @@
+@startuml
+interface observer.Client {
++ void update(Subject)
++ String getName()
++ void loadFrame()
+}
+
+class subject.LaptopsSubject {
+- List<Product> _products
+- Product _lastProduct
++ void addProduct(Product)
++ Product getProducts()
++ boolean exists(String)
+}
+
+
+class observer.ConcretClient {
+- String _name
+- Product _subjectState
+- JPanel productsPanel
+- JScrollPane _scrollPane
++ void update(Subject)
++ String getName()
++ void getSubjectState()
++ void loadFrame()
+}
+
+
+abstract class subject.Subject {
+- ArrayList<Client> _clients
++ boolean addObserver(Client)
++ boolean removeObserver(Client)
+# void notifyUsers()
++ boolean clientExists(Client)
++ {abstract}void addProduct(Product)
++ {abstract}Product getProducts()
++ {abstract}boolean exists(String)
+}
+
+
+class subject.MobilesSubject {
+- List<Product> _products
+- Product _lastProduct
++ void addProduct(Product)
++ Product getProducts()
++ boolean exists(String)
+}
+
+
+class subject.CpusSubject {
+- List<Product> _products
+- Product _lastProduct
++ void addProduct(Product)
++ Product getProducts()
++ boolean exists(String)
+}
+
+
+class gui.LoginFrame {
+- JPanel _panel
+- ObjectMapper _objectMapper
+- Subject _mobiles
+- Subject _laptops
+- Subject _cpus
+- List<Client> _clients
++ void Start()
++ void login()
++ void register()
++ void addProduct()
++ void addProductOptions()
++ void addSuscriptions(String)
++ void loadSuscriptors()
++ void fetchData()
+- boolean exists(String)
+}
+
+
+class Main {
++ {static} void main(String[])
+}
+
+class utils.Product {
+- String _name
+- double _price
+- String _image
++ String getName()
++ void setName(String)
++ double getPrice()
++ void setPrice(double)
++ String getImage()
++ void setImage(String)
+}
+
+
+
+
+subject.Subject <|-- subject.LaptopsSubject
+observer.Client <|.. observer.ConcretClient
+observer.JFrame <|-- observer.ConcretClient
+subject.Subject <|-- subject.MobilesSubject
+subject.Subject <|-- subject.CpusSubject
+gui.JFrame <|-- gui.LoginFrame
+@enduml
