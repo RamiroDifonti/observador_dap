@@ -9,6 +9,7 @@ import observer.Client;
 import observer.ConcretClient;
 import subject.LaptopsSubject;
 import subject.MobilesSubject;
+import subject.CpusSubject;
 import subject.Subject;
 import utils.Product;
 
@@ -27,7 +28,7 @@ public class LoginFrame extends JFrame {
     private ObjectMapper _objectMapper = new ObjectMapper();
     private Subject _mobiles = new MobilesSubject();
     private Subject _laptops = new LaptopsSubject();
-   /* private Subject _cpus = new CPUsSubject();*/
+    private Subject _cpus = new CpusSubject();
     private List<Client> _clients = new ArrayList<>();
     public LoginFrame() {
         loadSuscriptors();
@@ -56,15 +57,23 @@ public class LoginFrame extends JFrame {
     }
     public void login() {
         JPanel loginPanel = new JPanel();
-        GridLayout layout = new GridLayout(1, 3);
-        loginPanel.setLayout(layout);
+        loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
+        loginPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
         JLabel loginText = new JLabel("Introduzca un nombre de usuario: ");
+        loginText.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTextField loginField = new JTextField();
+        loginField.setMaximumSize(new Dimension(200, 30));
         JButton loginButton = new JButton("Iniciar sesión");
+        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         loginPanel.add(loginText);
+        loginPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         loginPanel.add(loginField);
+        loginPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         loginPanel.add(loginButton);
         _panel.add(loginPanel);
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,7 +82,6 @@ public class LoginFrame extends JFrame {
                     return;
                 }
                 if (exists(loginField.getText())) {
-                    // Buscar el cliente y cargar su frame
                     for (Client client : _clients) {
                         if (client.getName().equals(loginField.getText())) {
                             client.loadFrame();
@@ -86,16 +94,23 @@ public class LoginFrame extends JFrame {
             }
         });
     }
+
     public void register() {
         JPanel registerPanel = new JPanel();
-        GridLayout layout = new GridLayout(1, 3);
-        registerPanel.setLayout(layout);
+        registerPanel.setLayout(new BoxLayout(registerPanel, BoxLayout.Y_AXIS));
+        registerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
         JLabel registerText = new JLabel("Introduzca un nombre de usuario: ");
+        registerText.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTextField registerField = new JTextField();
+        registerField.setMaximumSize(new Dimension(200, 30));
         JButton registerButton = new JButton("Registrar usuario");
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         registerPanel.add(registerText);
+        registerPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         registerPanel.add(registerField);
+        registerPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         registerPanel.add(registerButton);
         _panel.add(registerPanel);
 
@@ -106,7 +121,7 @@ public class LoginFrame extends JFrame {
                     JOptionPane.showMessageDialog(null, "Por favor, introduzca un nombre de usuario.");
                     return;
                 }
-                if(exists(registerField.getText())) {
+                if (exists(registerField.getText())) {
                     JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe.");
                 } else {
                     remove(_panel);
@@ -115,11 +130,18 @@ public class LoginFrame extends JFrame {
             }
         });
     }
-    public void addProduct() {
-        JButton addButon = new JButton("Añadir producto");
-        _panel.add(addButon);
 
-        addButon.addActionListener(new ActionListener() {
+    public void addProduct() {
+        JPanel addProductPanel = new JPanel();
+        addProductPanel.setLayout(new BoxLayout(addProductPanel, BoxLayout.Y_AXIS));
+        addProductPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        JButton addButton = new JButton("Añadir producto");
+        addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addProductPanel.add(addButton);
+        _panel.add(addProductPanel);
+
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 remove(_panel);
@@ -127,17 +149,26 @@ public class LoginFrame extends JFrame {
             }
         });
     }
+
     public void addProductOptions() {
         _panel = new JPanel();
         _panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 
         JLabel nameText = new JLabel("Nombre: ");
+        nameText.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTextField nameField = new JTextField();
         JLabel priceText = new JLabel("Precio: ");
+        priceText.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTextField priceField = new JTextField();
         JLabel imageText = new JLabel("Imagen: ");
+        imageText.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTextField imageField = new JTextField();
         JButton addButon = new JButton("Añadir producto");
+        JButton backButton = new JButton("Volver");
+        JPanel backButtonPanel = new JPanel();
+        backButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        backButtonPanel.add(backButton);
+        backButtonPanel.add(addButon);
 
         // Crear botones de tipos de producto
         JRadioButton laptopButton = new JRadioButton("Laptop");
@@ -161,7 +192,14 @@ public class LoginFrame extends JFrame {
         _panel.add(imageText);
         _panel.add(imageField);
         _panel.add(buttonPanel);
-        _panel.add(addButon);
+        _panel.add(backButtonPanel);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(_panel);
+                Start();
+            }
+        });
 
         addButon.addActionListener(new ActionListener() {
             @Override
@@ -222,7 +260,8 @@ public class LoginFrame extends JFrame {
         _panel = new JPanel();
         _panel.setLayout(new BoxLayout(_panel, BoxLayout.Y_AXIS));
 
-        JLabel suscriptionOptions = new JLabel("Seleccione a la información que se quiere suscribir:",  JLabel.CENTER);
+        JLabel suscriptionOptions = new JLabel("Seleccione a la información que se quiere suscribir:");
+        suscriptionOptions.setAlignmentX(Component.CENTER_ALIGNMENT);
         JPanel suscriptionPanel = new JPanel();
         suscriptionPanel.setLayout(new GridLayout(1, 3));
         JCheckBox laptopsCheckbox = new JCheckBox("Laptops");
@@ -232,6 +271,19 @@ public class LoginFrame extends JFrame {
         suscriptionPanel.add(mobilesCheckbox);
         suscriptionPanel.add(cpusCheckbox);
         JButton registerButton = new JButton("Registrar usuario");
+        JButton backButton = new JButton("Volver");
+        JPanel backButtonPanel = new JPanel();
+        backButtonPanel.add(backButton);
+        backButtonPanel.add(registerButton);
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(_panel);
+                Start();
+            }
+        });
 
         registerButton.addActionListener(new ActionListener() {
             @Override
@@ -262,9 +314,9 @@ public class LoginFrame extends JFrame {
                 }
             }
         });
-        _panel.add(suscriptionOptions);
+        // _panel.add(suscriptionOptions);
         _panel.add(suscriptionPanel);
-        _panel.add(registerButton);
+        _panel.add(backButtonPanel);
         add(_panel);
         revalidate();
         repaint();
@@ -285,10 +337,10 @@ public class LoginFrame extends JFrame {
                 // Verificar las suscripciones
                 Client client = new ConcretClient(userName);
                 if (subscriptions.get("cpus").asBoolean()) {
-/*                    if (!_cpus.clientExists(client)) {
+                    if (!_cpus.clientExists(client)) {
                         _cpus.addObserver(client);
                         _clients.add(client);
-                    }*/
+                    }
                 }
                 if (subscriptions.get("laptops").asBoolean()) {
                     if (!_laptops.clientExists(client)) {
@@ -329,11 +381,11 @@ public class LoginFrame extends JFrame {
                     _mobiles.addProduct(mobile);
                 }
             });
-/*            products.get("cpus").forEach(cpu -> {
+            products.get("cpus").forEach(cpu -> {
                 if (!_cpus.exists(cpu.getName())) {
                     _cpus.addProduct(cpu);
                 }
-            });*/
+            });
 
         } catch (IOException e) {
             e.printStackTrace();
