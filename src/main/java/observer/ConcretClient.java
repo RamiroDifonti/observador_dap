@@ -31,15 +31,15 @@ public class ConcretClient extends JFrame implements Client {
 
         // Retrieve the image path from the Product object
         String imagePath = _subjectState.getImage();
-        System.out.println("Image path: " + imagePath); // Debug statement
+////        System.out.println("Image path: " + imagePath); // Debug statement
         File imageFile = new File(imagePath);
         ImageIcon imageIcon;
         if (!imagePath.isEmpty()) {
             imageIcon = new ImageIcon(imagePath);
-            System.out.println("Image loaded successfully: " + imagePath); // Debug statement
+//            System.out.println("Image loaded successfully: " + imagePath); // Debug statement
         } else {
             // Use a default image if the specified image is not found
-            System.out.println("Image not found, using default image."); // Debug statement
+//            System.out.println("Image not found, using default image."); // Debug statement
             imageIcon = new ImageIcon("src/main/resources/images/default.png");
         }
 
@@ -76,7 +76,7 @@ public class ConcretClient extends JFrame implements Client {
     }
 
     public void getSubjectState() {
-        System.out.println(_name + " has state: " + _subjectState);
+//        System.out.println(_name + " has state: " + _subjectState);
     }
 
     @Override
