@@ -1,0 +1,35 @@
+name: Acer Aspire 3 A315-44P AMD Ryzen 7 5700U/16GB/512GB SSD/15.6"
+price: 499
+imagen: src/main/resources/images/acer.png
+
+name: Intel Core i9-14900K 3.2/6GHz Box
+price: 534
+imagen: src/main/resources/images/inteli9.png
+
+name: Intel Core i7-14700KF 3.4/5.6GHz Box
+price: 377
+imagen: src/main/resources/images/inteli7.png
+
+name: Apple iPhone 16 128GB Rosa
+price: 959
+imagen: src/main/resources/images/iphone16.png
+
+name: Apple iPhone 15 128GB Negro
+price: 828
+imagen: src/main/resources/images/iphone15.png
+
+name: AMD Ryzen 9 9950X 4.3/5.7GHz
+price: 808
+imagen: src/main/resources/images/ryzen9.png
+
+name: Apple MacBook Air Apple M3 8 Núcleos/16GB/256GB SSD/GPU 8 Núcleos/13.6" Medianoche
+price: 1100
+imagen: src/main/resources/images/mac.png
+
+name: MSI Thin 15 B12UC-1839XES Intel Core i7-12650H/16GB/1TB SSD/RTX 3050/15.6"
+price: 779
+imagen: src/main/resources/images/msi.png
+
+name: OnePlus Nord 4 12/256GB Obsidian Midnight Libre
+price: 399
+imagen: src/main/resources/images/oneplus.png
