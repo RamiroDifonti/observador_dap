@@ -1,36 +1,36 @@
 package subject;
 
-import observer.Client;
+import observer.Observer;
 import utils.Product;
 
 import java.util.ArrayList;
 
 public abstract class Subject {
-    private ArrayList<Client> _clients = new ArrayList<>();
-    public boolean addObserver(Client client) {
+    private ArrayList<Observer> _observers = new ArrayList<>();
+    public boolean addObserver(Observer observer) {
         try {
-            _clients.add(client);
+            _observers.add(observer);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
-    public boolean removeObserver(Client client) {
+    public boolean removeObserver(Observer observer) {
         try {
-            _clients.remove(client);
+            _observers.remove(observer);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
     protected void notifyUsers() {
-        for (Client client : _clients) {
-            client.update(this);
+        for (Observer observer : _observers) {
+            observer.update(this);
         }
     }
-    public boolean clientExists(Client client) {
-        for (Client c : _clients) {
-            if (c.getName().equals(client.getName())) {
+    public boolean clientExists(Observer observer) {
+        for (Observer c : _observers) {
+            if (c.getName().equals(observer.getName())) {
                 return true;
             }
         }

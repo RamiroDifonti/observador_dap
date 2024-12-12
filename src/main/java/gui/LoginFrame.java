@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import observer.Observer;
 import observer.Client;
-import observer.ConcretClient;
 import subject.LaptopsSubject;
 import subject.MobilesSubject;
 import subject.CpusSubject;
@@ -29,7 +29,7 @@ public class LoginFrame extends JFrame {
     private Subject _mobiles = new MobilesSubject();
     private Subject _laptops = new LaptopsSubject();
     private Subject _cpus = new CpusSubject();
-    private List<Client> _clients = new ArrayList<>();
+    private List<Observer> _observers = new ArrayList<>();
     public LoginFrame() {
         loadSuscriptors();
         fetchData();
@@ -82,9 +82,9 @@ public class LoginFrame extends JFrame {
                     return;
                 }
                 if (exists(loginField.getText())) {
-                    for (Client client : _clients) {
-                        if (client.getName().equals(loginField.getText())) {
-                            client.loadFrame();
+                    for (Observer observer : _observers) {
+                        if (observer.getName().equals(loginField.getText())) {
+                            observer.loadFrame();
                             break;
                         }
                     }
@@ -335,25 +335,25 @@ public class LoginFrame extends JFrame {
                 JsonNode subscriptions = entry.getValue().get(0); // Asumimos que siempre hay un array con 1 objeto
 
                 // Verificar las suscripciones
-                Client client = new ConcretClient(userName);
+                Observer observer = new Client(userName);
                 if (subscriptions.get("cpus").asBoolean()) {
-                    if (!_cpus.clientExists(client)) {
-                        _cpus.addObserver(client);
-                        _clients.add(client);
+                    if (!_cpus.clientExists(observer)) {
+                        _cpus.addObserver(observer);
+                        _observers.add(observer);
                     }
                 }
                 if (subscriptions.get("laptops").asBoolean()) {
-                    if (!_laptops.clientExists(client)) {
-                        _laptops.addObserver(client);
-                        _clients.add(client);
+                    if (!_laptops.clientExists(observer)) {
+                        _laptops.addObserver(observer);
+                        _observers.add(observer);
                     }
 
 
                 }
                 if (subscriptions.get("mobiles").asBoolean()) {
-                    if (!_mobiles.clientExists(client)) {
-                        _mobiles.addObserver(client);
-                        _clients.add(client);
+                    if (!_mobiles.clientExists(observer)) {
+                        _mobiles.addObserver(observer);
+                        _observers.add(observer);
                     }
                 }
             }
