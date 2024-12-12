@@ -1,5 +1,17 @@
 @startuml
-interface observer.Client {
+class observer.Client {
+- String _name
+- Product _subjectState
+- JPanel productsPanel
+- JScrollPane _scrollPane
++ void update(Subject)
++ String getName()
++ void getSubjectState()
++ void loadFrame()
+}
+
+
+interface observer.Observer {
 + void update(Subject)
 + String getName()
 + void loadFrame()
@@ -14,24 +26,12 @@ class subject.LaptopsSubject {
 }
 
 
-class observer.ConcretClient {
-- String _name
-- Product _subjectState
-- JPanel productsPanel
-- JScrollPane _scrollPane
-+ void update(Subject)
-+ String getName()
-+ void getSubjectState()
-+ void loadFrame()
-}
-
-
 abstract class subject.Subject {
-- ArrayList<Client> _clients
-+ boolean addObserver(Client)
-+ boolean removeObserver(Client)
+- ArrayList<Observer> _observers
++ boolean addObserver(Observer)
++ boolean removeObserver(Observer)
 # void notifyUsers()
-+ boolean clientExists(Client)
++ boolean clientExists(Observer)
 + {abstract}void addProduct(Product)
 + {abstract}Product getProducts()
 + {abstract}boolean exists(String)
@@ -62,7 +62,7 @@ class gui.LoginFrame {
 - Subject _mobiles
 - Subject _laptops
 - Subject _cpus
-- List<Client> _clients
+- List<Observer> _observers
 + void Start()
 + void login()
 + void register()
@@ -94,9 +94,9 @@ class utils.Product {
 
 
 
+observer.Observer <|.. observer.Client
+observer.JFrame <|-- observer.Client
 subject.Subject <|-- subject.LaptopsSubject
-observer.Client <|.. observer.ConcretClient
-observer.JFrame <|-- observer.ConcretClient
 subject.Subject <|-- subject.MobilesSubject
 subject.Subject <|-- subject.CpusSubject
 gui.JFrame <|-- gui.LoginFrame
